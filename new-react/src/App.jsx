@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg';
 import './App.css';
 import Welcome from './Welcome';
 import MyCard from './MyCard';
+import MyDate from './MyDate';
 
 function App() {
   //const [dataFromChild, setDataFromChild] = useState(null)
@@ -15,7 +16,7 @@ function App() {
         !start && <Welcome onButtonClick={()=> setStart(true)}/>
       }
       {
-        start && <MyCard><p>to jest p</p></MyCard>
+        start && <MyCard><MyDate/></MyCard>
       }
     </>
   )
