@@ -1,0 +1,12 @@
+li{
+    color:"#fff";
+    font-size:"19px";
+    margin-bottom:"10px"
+}
+#del{
+    margin-right:"10px";
+    background:"03045e"
+}
+#del:hover{
+    color:"#FF0000"
+}
