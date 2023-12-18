@@ -16,11 +16,12 @@ const ToDo = () =>{
         )
     }
 
+    const [new_task, setNew_task] = useState("")
+
     const addTaskHandler = () =>{
-        newtask = ReactDOM.render(document.getElementById('new_task').value)
         const newTask = {
             id: Math.random().toString(36).substring(7),
-            text: {newtask},
+            text: new_task,
             completed: false,
         }
 
@@ -40,7 +41,7 @@ const ToDo = () =>{
                 }
 
             </ul>
-            <input type="text" style={{marginBottom: "10px", borderRadius: 5, height: 20, width: 300}} id="new_task"/><br/>
+            <input type="text" value={new_task} onChange={e => setNew_task(e.target.value)} style={{marginBottom: "10px", borderRadius: 5, height: 20, width: 300}} /><br/>
             <button onClick={addTaskHandler}>  Dodaj nowe zadanie  </button>
         </div>
     )
