@@ -33,7 +33,7 @@ const ToDo = () =>{
             <ul style={{listStyleType: "none"}}>
                 {
                 toDos.map( task =>(
-                    <li style={{color:"#fff", fontsize:"19px", marginbottom:"10px"}} key={task.id}>
+                    <li style={{color:"black", fontsize:"19px", marginbottom:"10px"}} key={task.id}>
                         {"Dodano "+date.getHours()+":"+date.getMinutes()+" "+date.getDate()+"/"+date.getMonth()+
                             "/"+date.getFullYear()}<br/>
                         <button style={{marginRight:"35px",background:"03045e"}} 

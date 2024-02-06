@@ -1,0 +1,17 @@
+#answer_box{
+  width: 200px;
+  height: 30px;
+  margin-bottom: 40px;
+}
+#submit_answer{
+  width: 100px;
+  height: 20px;
+  text-align: center;
+}
+
+#all{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
