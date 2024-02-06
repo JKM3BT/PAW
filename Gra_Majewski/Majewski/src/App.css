@@ -8,10 +8,17 @@
   height: 20px;
   text-align: center;
 }
-
-.all{
+body{
+  justify-content: center;
+}
+#all{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
+  align-items: center;
+}
+#startOrReset{
+  margin-top: 20px;
+  width: 100px;
+  height: 20px;
+  text-align: center;
 }
