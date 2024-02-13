@@ -17,34 +17,38 @@ function App() {
     i=1;
     setQuestion(listOfQuestions[i]);
     setPoints(0);
-    answer_here = document.getElementById("answer_box").innerHTML = "";
-  } 
-
-  function next(){
-    answer_here = document.getElementById("answer_box").value;
-    if (answer_here == answer){
-      setPoints(points+1);
-      i++;
-      setQuestion(listOfQuestions[i]);
-      setAnswer(listOfAnswers[i]);
-      pytanie_here = document.getElementById("pytanie").innerHTML = question;
+    let startAnswer = document.getElementById("answer").innerHTML = "";
+    return true;
+  }
+  
+  function nextQuestion(){
+    while (showTime == true){
+      let userAnswer = document.getElementById("answer").value;
+      if ( userAnswer == answer){
+        setPoints(points+1);
+        i++;
+        setQuestion(listOfQuestions[i]);
+        setAnswer(listOfAnswers[i]);
+        let newPoints = document.getElementById("punkty").innerHTML = "Points:"+points;
+        let newQuestion = document.getElementById("pytanie").innerHTML = question;
+      }
+      else{
+        i++;
+        setQuestion(listOfQuestions[i]);
+        setAnswer(listOfAnswers[i]);
+        let newQuestion = document.getElementById("pytanie").innerHTML = question;
+      }
     }
-    else{
-      i++;
-      setQuestion(listOfQuestions[i]);
-      pytanie_here = document.getElementById("pytanie").innerHTML = question;
-    }
-    return i
   }
   
   return (
     <section id='all'>
-      <h2>Points:{points}</h2>
+      <h2 id='punkty'>Points:{points}</h2>
       <h1 id="pytanie">{question}</h1>
       <form>
-        <input id='answer_box' type='text'/>
+        <input id='answer' type='text'/>
         <br/>
-        <input id="submit_answer" type='button' value="Dalej" onClick={next}/>
+        <input id="submit_answer" type='button' value="Sprawdź odpowiedź" onClick={nextQuestion}/>
         <input id="startOrReset" type='button' value="Start/Reset" onClick={showTime}/>
       </form>
 
