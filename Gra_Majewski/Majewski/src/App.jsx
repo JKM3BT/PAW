@@ -10,44 +10,46 @@ function App() {
 
   const listOfAnswers = ["","warszawa","rosja","krzysztof kolumb","oba","australia","wszystkie"];
 
-  const [Question, setQuestion] = useState(listOfQuestions[Counter]);
-  const [Answer, setAnswer] = useState(listOfAnswers[Counter]);
-
-  function showTime(){
+  function Start_Reset(){
     setCounter(1);
-    setQuestion(listOfQuestions[Counter]);
     setPoints(0);
-    let answer_here = document.getElementById("answer_box").value = "";
-    let pytanie_here = document.getElementById("pytanie").innerHTML = Question;
+    let question_change = document.getElementById("pytanie").innerHTML = listOfQuestions[Counter];
+    let answer_reset = document.getElementById("answer_box").value = "";
+
   }
-  function nextQuestion(){
-    answer_here = document.getElementById("answer_box").value;
-    console.log(Counter);
-    if (answer_here.toLowerCase() == Answer){
-      setPoints(Points + 1);
-      setCounter(Counter + 1);
-      setQuestion(listOfQuestions[Counter]);
-      setAnswer(listOfAnswers[Counter]);
-      let pytanie_here = document.getElementById("pytanie").innerHTML = Question;
-      answer_here = document.getElementById("answer_box").value = "";
-    }
-    else{
-      setCounter(Counter + 1);
-      setQuestion(listOfQuestions[Counter]);
-      setAnswer(listOfAnswers[Counter]);
-      let pytanie_here = document.getElementById("pytanie").innerHTML = Question;
-      let answer_here = document.getElementById("answer_box").value = "";
+  function Correct(){
+    setPoints(Points+1);
+    setCounter(Counter+1);
+    let question_change = document.getElementById("pytanie").innerHTML = listOfQuestions[Counter];
+    let answer_reset = document.getElementById("answer_box").value = "";
+  }
+  function Incorrect(){
+    setCounter(Counter+1);
+    let question_change = document.getElementById("pytanie").innerHTML = listOfQuestions[Counter];
+    let answer_reset = document.getElementById("answer_box").value = "";
+  }
+  function Verify(){
+    if(Counter == 6){
+      let odp = document.getElementById("pytanie").innerHTML = "Poprawne odpowiedzi to: "+listOfAnswers.slice(1,7);
+    } else {
+      let answerVerify = document.getElementById("answer_box").value;
+      if(answerVerify.toLowerCase() == listOfAnswers[Counter]){
+        Correct();
+      } else {
+        Incorrect();
+      }
     }
   }
   return (
     <section id='all'>
       <h2>Points:{Points}</h2>
-      <h1 id="pytanie">{Question}</h1>
+      <h1 id="pytanie">{listOfQuestions[Counter]}</h1>
       <form>
         <input id='answer_box' type='text'/>
         <br/>
-        <input id="submit_answer" type='button' value="Dalej" onClick={nextQuestion}/>
-        <input id="startOrReset" type='button' value="Start/Reset" onClick={showTime}/>
+        <button type='button' id='next' className='button' onClick={Verify}>dalej</button>
+        <br/>
+        <button type='button' className='button' onMouseDown={Start_Reset} onMouseUp={Start_Reset}>Start</button>
       </form>
 
     </section>
