@@ -16,9 +16,8 @@
   margin-top: 20px;
   width: 100px;
   height: auto;
-  margin-left: 40%;
   text-align:center;
-  background-color: blueviolet;
+  background-color: green;
   align-self: flex-start;
 }
 #next{
@@ -28,7 +27,7 @@
   height: auto;
   margin-left: 40%;
   text-align:center;
-  background-color: darkred;
+  background-color: blueviolet;
 }
 body{
   justify-content: center;
@@ -50,6 +49,14 @@ body{
 img{
   margin-top: 2%;
   border-radius: 24px;
+}
+#end{
+  margin-top: 10%;
+  margin-bottom: 5%;
+  width: 100px;
+  height: auto;
+  text-align:center;
+  background-color: darkred;
 }
 @keyframes score{
   from {color: white;}
