@@ -11,6 +11,7 @@
   width: 1300px;
   height: 200px;
  text-align: center;
+ color: white;
 }
 #start{
   margin-top: 20px;
@@ -19,6 +20,7 @@
   text-align:center;
   background-color: green;
   align-self: flex-start;
+  color: white;
 }
 #next{
   margin-top: 10%;
@@ -28,6 +30,7 @@
   margin-left: 40%;
   text-align:center;
   background-color: blueviolet;
+  color: white;
 }
 body{
   justify-content: center;
@@ -45,6 +48,7 @@ body{
   align-self: flex-end;
   margin-right: 2%;
   position: absolute;
+  color: white;
 }
 img{
   margin-top: 2%;
@@ -57,6 +61,7 @@ img{
   height: auto;
   text-align:center;
   background-color: darkred;
+  color: white;
 }
 @keyframes score{
   from {color: white;}
