@@ -1,16 +1,19 @@
-export default function Api(){
+export default function Api({people}){
     return(
-        <table>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-            </tr>
-        </table>
+        <section style={{marginTop:"15%",marginBottom:"23%"}}>
+            <h1 style={{textAlign:"center"}}>Postać</h1>
+            <ul style={{display:"table",margin:"0 auto"}}>
+            {
+                    people.map( item => <li key={item.name}>
+                        {item.name},{" "}
+                        {item.height},{" "}
+                        {item.gender},{" "}
+                        {item.birth_year},{" "}
+                        {item.hair_color},{" "}
+                        {item.skin_color},{" "}
+                        {item.eye_color}</li> )
+                }
+            </ul>
+        </section>
     )
 }
