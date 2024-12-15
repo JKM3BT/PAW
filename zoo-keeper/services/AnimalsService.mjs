@@ -12,56 +12,78 @@ const AnimalsService = {
     async getAnimals(encoding = "utf8"){
         try{
             const data = await promises.readFile(animalsFile, encoding);
-            return JSON.parse(data || "[]")
+            return JSON.parse(data || "[]");
         } catch(err){
-            console.error("Error loading animal ", err)
-            throw new Error("Error loading animal")
-        }
+            console.error("Error loading animal ", err);
+            throw new Error("Error loading animal");
+        };
     },
 
     async findAnimalById(id){
-        const animals = await this.getAnimals()
-        const animalIndex = animals.findIndex(animal => animal.id === id)
+        const animals = await this.getAnimals();
+        const animalIndex = animals.findIndex(animal => animal.id === id);
         if(animalIndex === -1){
-            throw new Error(`Animal with id ${id} not found`)
-        }
-        return {animal: animals[animalIndex], index: animalIndex, animals}
+            throw new Error(`Animal with id ${id} not found`);
+        };
+        return {animal: animals[animalIndex], index: animalIndex, animals};
     },
 
     async findEndangeredAnimals(){
         const animals = await this.getAnimals();
         const animalsList = animals.filter(animal => animal.isEndangered === true);
-        if(animalsList === "[]"){
-            throw new Error("No animals are endangered")
+        if(animalsList == []){
+            throw new Error("No animals are endangered");
         };
         return animalsList;
     },
 
-    async findAnimalByHabitat(habitat){
+    async findAnimalsByHabitat(habitat){
         const animals = await this.getAnimals();
         const animalsList = animals.filter(animal => animal.habitat === habitat);
-        if(animalsList == "[]"){
+        if(animalsList == []){
             throw new Error(`No animals living in ${habitat} were found`);
         };
         return animalsList;
     },
 
+    async findAnimalsBySpecies(species){
+        const animals = await this.getAnimals();
+        const animalsList = animals.filter(animal => animal.species === species);
+        if(animalsList == []){
+            throw new Error(`No ${species}s were found`);
+        };
+        return animalsList;
+    }, 
+
     async updateAnimal(id, newAnimalData){
-        const {animal, index, animals} = await this.findAnimalById(id)
-        animals[index] = {...animal, ...newAnimalData}
-        await this.saveAnimals(animals)
-        return animals[index]
+        const {animal, index, animals} = await this.findAnimalById(id);
+        animals[index] = {...animal, ...newAnimalData};
+        await this.saveAnimals(animals);
+        return animals[index];
     },
 
     async saveAnimals(animals){
         try{
-            const jsonData = JSON.stringify(animals, null, 2)
-            await promises.writeFile(animalsFile, jsonData, "utf8")
+            const jsonData = JSON.stringify(animals, null, 2);
+            await promises.writeFile(animalsFile, jsonData, "utf8");
         }catch(err){
-            throw new Error("Error saving animals list")
-        }
+            throw new Error("Error saving animals list");
+        };
+    },
+
+    async deleteAnimal(id){
+        const animals = await this.getAnimals();
+
+        const index = animals.findIndex(animal => animal.id === id);
+        if (index === -1){
+            throw new Error(`Animal with id ${id} not found.`);
+        };
+        animals.splice(index, 1);
+        await promises.writeFile(animalsFile, JSON.stringify(animals, null, 2), "utf-8");
+        return {message: `Animal with id ${id} deleted.`};
+
     }
 
 }
 
-export default AnimalsService
+export default AnimalsService;

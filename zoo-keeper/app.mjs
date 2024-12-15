@@ -11,11 +11,14 @@ app.get("/", (req, res) => {
     res.send("Ok")
 })
 
-// app.get("/animals", AnimalsController.getAllAnimals); OK
-// app.get("/animals/:id", AnimalsController.getAnimalById); program zdurniał na punkcie tego
-// app.get("/animals/endangered", AnimalsController.getEndangeredAnimals); Działa, pod warunkiem, że linia 15 jest zakomentowana
-// app.get("/animals/habitat/:habitat", AnimalsController.getAnimalsByHabitat); ten sam komentarz co linijkę wyżej
-// app.put("/animals/:id", AnimalsController.updateAnimal); Nie testowałem
+app.get("/animals", AnimalsController.getAllAnimals); // Ok
+app.get("/animals/id/:id", AnimalsController.getAnimalById); // Ok
+app.get("/animals/endangered", AnimalsController.getEndangeredAnimals); // Ok
+app.get("/animals/habitat/:habitat", AnimalsController.getAnimalsByHabitat); // Ok
+app.get("/animals/species", AnimalsController.getAnimalsBySpecies); // Ok
+// app.post("/animals", AnimalsController); Didn't bother to finish it
+app.put("/animals/id/:id", AnimalsController.updateAnimal); // Not ok
+app.delete("/animals/id/:id", AnimalsController.deleteAnimal); // Not ok
 
 
 app.listen(PORT, () => {

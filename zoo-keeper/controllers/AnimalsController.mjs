@@ -39,6 +39,16 @@ const AnimalsController = {
         };
     },
 
+    async getAnimalsBySpecies(req, res){
+        const species = req.query.species
+        try {
+            const animals = await AnimalsService.findAnimalsBySpecies(species);
+            res.json(animals);
+        } catch (error) {
+            res.status(500).json({message:`Fail to load animals ${error}`});
+        };
+    },
+
     async updateAnimal(req,res){
         const animalId = parseInt(req.params.id)
         const newAnimal = req.body
@@ -54,6 +64,23 @@ const AnimalsController = {
             }
         }
 
+    },
+
+    async deleteAnimal(req, res) {
+        const animalId = parseInt(req.params.id);
+        console.log(animalId);
+
+        try{
+            const result = await AnimalsService.deleteAnimal(animalId);
+            res.status(200).json(result);
+
+        } catch(error) {
+            if(error.message.includes('not found')){
+                res.status(404).json({error:error.message});
+            }else{
+                res.status(500).json({error: "Failed to delete Dinosaur"});
+            }
+        }
     }
 }
 
